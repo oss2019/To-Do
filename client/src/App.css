@@ -1,0 +1,24 @@
+.home {
+  padding: 4rem;
+}
+
+.add {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.red {
+  color: red !important;
+}
