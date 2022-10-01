@@ -45,7 +45,7 @@ Also, ensure your code is correctly formatted and is readable. Unreadable codes 
 
 Before contributing for the advanced features, make sure that the basic onces are completed. Also, some features are dependent on another so ensure that the other feature (if any) is completed before you take it up.
 
-To contribute to the project, first visit the issues tab in guthub and take up an issue. Taking up an issue is as simple as commenting on it saying you are going to take it up.
+To contribute to the project, first visit the issues tab in github and take up an issue. Taking up an issue is as simple as commenting on it saying you are going to take it up.
 We will assign you the issue post that. Please avoid taking up issues that someone else has already taken up.
 Once assigned, you can make your changes and push the code. Please follow the below guidelines for the same:
 
