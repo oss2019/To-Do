@@ -17,7 +17,7 @@ These are the list of a few basic features. You can check out the issues for the
 These are some advanced features that can be implemented. You can check out the issues for the same.
 
 - [ ] Add user authentication
-- [ ] Add a backend and a database layer to store the created notes.
+- [x] Add a backend and a database layer to store the created notes.
 - [ ] Add get notes endpoint.
 - [ ] Add insert note endpoint.
 - [ ] Add edit note endpoint.
