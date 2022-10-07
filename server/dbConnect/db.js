@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-// const url = process.env.DATABASE_URI;
-const url = "mongodb://localhost:27017/NotesDB";
+const url = process.env.DATABASE_URI;
 mongoose.connect(url, {useNewUrlParser: true})
 
 const NotesSchema = new mongoose.Schema({

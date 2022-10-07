@@ -22,11 +22,11 @@ app.get("/", async(req, res)=>{
 
 app.post("/", async(req, res)=>{
     try {
-        const {title, subTitle, description} = req.body;
+        const {title, subtitle, body} = req.body;
         const newNote = new Note({
             title : title,
-            subtitle : subTitle,
-            body : description,
+            subtitle : subtitle,
+            body : body,
         })
         const saveNote = await newNote.save();
         res.json(saveNote)
