@@ -1,9 +1,41 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv').config();
-const dbConnect = require('./dbConnect/db');
 const app = express();
-
 app.use(bodyParser.json());
 
-dbConnect();
+// tackling cors policy 😢  $ npm i cors
+const cors = require("cors");
+app.use(
+  cors({
+    origin : "*",     // allow from any origin
+    methods : ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],  // allowed methods
+    credentials: true
+  })
+)
+const Note = require('./dbConnect/db')
+
+// routes 
+app.get("/", async(req, res)=>{
+    const notes = await Note.find();
+    res.send(notes);
+})
+
+app.post("/", async(req, res)=>{
+    try {
+        const {title, subTitle, description} = req.body;
+        const newNote = new Note({
+            title : title,
+            subtitle : subTitle,
+            body : description,
+        })
+        const saveNote = await newNote.save();
+        res.json(saveNote)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.listen(3001, () => {
+    console.log("server started at server 3001");
+  });
+  
