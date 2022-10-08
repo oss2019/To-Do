@@ -1,18 +1,11 @@
-const mongoose = require("mongoose");
-const url = process.env.DATABASE_URI;
-mongoose.connect(url, {useNewUrlParser: true})
+const mongoose = require('mongoose');
 
-const NotesSchema = new mongoose.Schema({
-  title: {
-    type: String,
-  },
-  subtitle: {
-    type: String,
-  },
-  body: {
-    type: String,
-  },
-});
-
-const Notes = mongoose.model("Notes", NotesSchema);
-module.exports = Notes;
+const dbConnect = async () => {
+  try {
+    await mongoose.connect(process.env.DATABASE_URI);
+    console.log('database connected');
+  } catch (err) {
+    console.log(err);
+  }
+};
+module.exports = dbConnect;

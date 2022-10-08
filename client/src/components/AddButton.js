@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 import Dialog from './Modal';
 
-const AddButton = ({ notes, change }) => {
+const AddButton = ({ todos, change }) => {
 
     const [show, setShow] = React.useState(false);
     
@@ -13,9 +13,14 @@ const AddButton = ({ notes, change }) => {
 
         handleShow();
         
-        change([
-            ...notes, 
-        ]);
+        // change([
+        //     ...todos, 
+        //     {
+        //         title: "A",
+        //         subtitle: "S",
+        //         body: "description"
+        //     }
+        // ]);
         console.log("Added");
     }
 
@@ -24,7 +29,7 @@ const AddButton = ({ notes, change }) => {
             <Card className="add" onClick={add}>
                 +
             </Card>
-            <Dialog show={show} setShow={setShow} notes={notes} setnotes={change} close={setShow}/>
+            <Dialog show={show} setShow={setShow} todos={todos} setTodos={change} close={setShow}/>
         </div>
     )
 }

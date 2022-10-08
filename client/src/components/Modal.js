@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const Dialog = ({ show, setShow, notes, setnotes, close }) => {
+const Dialog = ({ show, setShow, todos, setTodos, close }) => {
 
     const [title, setTitle] = React.useState("");
     const [subtitle, setSubtitle] = React.useState("");
@@ -13,42 +13,20 @@ const Dialog = ({ show, setShow, notes, setnotes, close }) => {
   
     const handleClose = () => setShow(false);
 
-   
-
-    const handleSubmit = (event) => {
-      const note = {
-        title: "title1fsdasdfa1",
-        subtitle: "subtfasditle2",
-        body: "desasdfc",
-      }
-      event.preventDefault();
+    const handleSubmit = () => {
       if(title !== "") {
         setError(false);
-        
-        setnotes([ ...notes, note ]);
+        const todo = {
+          title: title,
+          subtitle: subtitle,
+          body: desc
+        }
+        setTodos([ ...todos, todo ]);
         close(false);
       } else {
         setError(true);
       }
-      try {
-        addNote(note);
-      } catch (error) {
-        console.log(error)
-      }
     }
-
-    const addNote = async (note) => {
-      const response = await fetch("http://localhost:3001/", {
-        method: "POST",
-        body: JSON.stringify(note),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        Credentials: "include",
-      });
-      const data = await response.json();
-      console.log(data);
-    };
   
     return (
       <>  
@@ -59,10 +37,10 @@ const Dialog = ({ show, setShow, notes, setnotes, close }) => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Add note</Modal.Title>
+            <Modal.Title>Add Todo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter title" onChange={(e) => setTitle(e.target.value)} />
@@ -82,7 +60,7 @@ const Dialog = ({ show, setShow, notes, setnotes, close }) => {
                 <Form.Label>Description(optional)</Form.Label>
                 <Form.Control type="text" placeholder="Enter description" onChange={(e) => setDesc(e.target.value)} />
               </Form.Group>
-              <Button type='submit' variant="primary">Done</Button>
+              <Button variant="primary" onClick={handleSubmit}>Done</Button>
             </Form>
           </Modal.Body>
         </Modal>
