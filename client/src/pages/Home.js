@@ -8,9 +8,6 @@ import AddButton from '../components/AddButton';
 const Home = () => {
   const [notes, setNotes] = React.useState([]); // var notes = [];
   const [loading, setLoading] = useState(false)
-  // React.useEffect(() => {
-  //   setNotes([...JSON.parse(localStorage.getItem('notes'))]);
-  // }, []);
 
   const fetchAllNotes = async ()=>{
     setLoading(true);
@@ -30,14 +27,37 @@ const Home = () => {
     }
   }, [])
   
+  const noteIdfunc = (id)=>{
+    console.log(id)
+    try {
+      console.log("first")
+      delNote(id)
+    } catch (error) {
+      console.log("suuuuu")
+    }
+    
+  }
 
-  // const addNotes = async ()=>{
-  //   const response = await fetch("http://localhost:3001/", {
-  //     method : "POST",
+  const delNote = async (noteId) => {
+    await fetch("http://localhost:3001/", {
+      method: "DELETE",
+      body: JSON.stringify({noteId : noteId}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        Credentials: "include",
+    });
 
-  //   })
-  // }
+    setNotes((prevNotes)=>{
+      return (
+        prevNotes.filter((note)=>{
+          return note._id != noteId
+        })
+      )
+    })
   
+  };
+
 
   return (
     <div>
@@ -55,7 +75,7 @@ const Home = () => {
             {notes.map((todo, index) => (
               <Col className="center" key={index}>
                 <div>
-                  <CardComp title={todo.title} subtitle={todo.subtitle} body={todo.body} />
+                  <CardComp noteIdfunc={noteIdfunc} _id={todo._id} title={todo.title} subtitle={todo.subtitle} body={todo.body} />
                 </div>
               </Col>
             ))}

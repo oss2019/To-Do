@@ -17,15 +17,13 @@ const Dialog = ({ show, setShow, notes, setnotes, close }) => {
 
     const handleSubmit = (event) => {
       const note = {
-        title: "title1fsdasdfa1",
-        subtitle: "subtfasditle2",
-        body: "desasdfc",
+        title: title,
+        subtitle: subtitle,
+        body: desc,
       }
       event.preventDefault();
       if(title !== "") {
         setError(false);
-        
-        setnotes([ ...notes, note ]);
         close(false);
       } else {
         setError(true);
@@ -47,7 +45,9 @@ const Dialog = ({ show, setShow, notes, setnotes, close }) => {
         Credentials: "include",
       });
       const data = await response.json();
+      setnotes([ ...notes, {title : data.title, subtitle : data.subtitle, body : data.body, _id  : data._id} ]);
       console.log(data);
+
     };
   
     return (
