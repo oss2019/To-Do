@@ -8,7 +8,7 @@ const cors = require("cors");
 app.use(
   cors({
     origin : "*",     // allow from any origin
-    methods : ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],  // allowed methods
+    methods : "*",  // allowed methods
     credentials: true
   })
 )
@@ -33,6 +33,19 @@ app.post("/", async(req, res)=>{
     } catch (error) {
         console.log(error)
     }
+})
+
+app.delete("/", async (req, res)=>{
+    let reqNoteId = req.body.noteId
+    Note.findByIdAndDelete(reqNoteId, (err, blog) => {
+        if (err) {
+            console.log(err);
+          } else {
+            // console.log("blog " + blog.title + "is deleted !!");
+            res.send("delted successfully")
+          }
+    })
+    
 })
 
 app.listen(3001, () => {
