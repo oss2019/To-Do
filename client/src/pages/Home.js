@@ -39,6 +39,7 @@ const Home = () => {
   }
 
   const delNote = async (noteId) => {
+    setLoading(true)
     await fetch("http://localhost:3001/", {
       method: "DELETE",
       body: JSON.stringify({noteId : noteId}),
@@ -47,6 +48,7 @@ const Home = () => {
         },
         Credentials: "include",
     });
+    setLoading(false)
 
     setNotes((prevNotes)=>{
       return (
